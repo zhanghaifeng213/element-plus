@@ -4,8 +4,9 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import Chinese from '@element-plus/locale/lang/zh-cn'
 import English from '@element-plus/locale/lang/en'
 import { buildTranslator, useLocale } from '../use-locale'
+
 import type { Language } from '@element-plus/locale'
-import type { ComponentPublicInstance, PropType } from 'vue'
+import type { ComponentPublicInstance, DefineComponent, PropType } from 'vue'
 import type { VueWrapper } from '@vue/test-utils'
 
 const TestComp = defineComponent({
@@ -73,7 +74,10 @@ describe('use-locale', () => {
             })
           },
           template: '<div></div>',
-        }),
+        }) as DefineComponent<
+          unknown,
+          { locale: ReturnType<typeof useLocale>['locale'] }
+        >,
         {
           global: {
             provide: {

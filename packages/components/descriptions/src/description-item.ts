@@ -3,7 +3,7 @@ import { columnAlignment } from '@element-plus/constants'
 import { buildProps } from '@element-plus/utils'
 import { COMPONENT_NAME } from './constants'
 
-import type { ExtractPropTypes, Slot, VNode } from 'vue'
+import type { ExtractPropTypes, ExtractPublicPropTypes, Slot, VNode } from 'vue'
 
 export const descriptionItemProps = buildProps({
   /**
@@ -46,7 +46,6 @@ export const descriptionItemProps = buildProps({
    */
   labelWidth: {
     type: [String, Number],
-    default: '',
   },
   /**
    * @description column content alignment (If no `border`, effective for both label and content)
@@ -87,6 +86,9 @@ const DescriptionItem = defineComponent({
 export default DescriptionItem
 
 export type DescriptionItemProps = ExtractPropTypes<typeof descriptionItemProps>
+export type DescriptionItemPropsPublic = ExtractPublicPropTypes<
+  typeof descriptionItemProps
+>
 export type DescriptionItemVNode = VNode & {
   children: { [name: string]: Slot } | null
   props: Partial<DescriptionItemProps> | null
